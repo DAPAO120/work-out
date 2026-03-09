@@ -1,0 +1,51 @@
+server:
+  port: 8080
+  # debug | release | test 运行环境
+  level: debug
+
+datasource:
+  host: 192.168.232.128
+  port: 5432
+  username: wechatapp1
+  password: 20000107
+  db_name: wechatapp1
+  config: sslmode=disable&TimeZone=Asia/Shanghai
+  db_type: PostgreSql
+
+redis:
+  host: 192.168.232.128
+  port: 6379
+  password: 20000107
+  data_base: 1
+
+log:
+  level: debug
+  filepath: ./logger/systemLog.txt
+
+
+jwt:
+  admin:
+    # 设置jwt签名加密时使用的秘钥
+    secret: admin
+    # 设置jwt过期时间
+    ttl: 7200000
+    # 设置前端传递过来的令牌名称
+    name: token
+  user:
+    # 设置jwt签名加密时使用的秘钥
+    secret: user
+    # 设置jwt过期时间
+    ttl: 7200000
+    # 设置前端传递过来的令牌名称
+    name: Authorization
+
+
+alioss:
+  endpoint: YouOption
+  access_key_id: YouOption
+  access_key_secret: YouOption
+  bucket_name: YouOption
+
+wechat:
+  appid: YouOption
+  secret: YouOption

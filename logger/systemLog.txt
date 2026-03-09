@@ -1,0 +1,7 @@
+time="2026-03-09 03:23:18" level=info msg="日志开启成功"
+time="2026-03-09 03:23:41" level=debug msg=Debug123
+time="2026-03-09 03:23:42" level=warning msg=Warn123
+time="2026-03-09 03:23:43" level=info msg=Info123
+time="2026-03-09 03:24:33" level=info msg="日志开启成功"
+time="2026-03-09 03:24:44" level=warning msg=Warn123
+time="2026-03-09 03:24:45" level=info msg=Info123
