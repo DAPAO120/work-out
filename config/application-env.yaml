@@ -2,10 +2,10 @@ server:
   port: 8080
   # debug | release | test 运行环境
   level: debug
-  domain: http://192.168.232.128:8080
+  domain: https://zglndlls.top
 
 datasource:
-  host: 192.168.232.128
+  host: postgres
   port: 5432
   username: wechatapp1
   password: 20000107
@@ -14,7 +14,7 @@ datasource:
   db_type: PostgreSql
 
 redis:
-  host: 192.168.232.128
+  host: postgres
   port: 6379
   password: 20000107
   data_base: 1
@@ -36,5 +36,5 @@ alioss:
   bucket_name: YouOption
 
 wechat:
-  appid: wx845d22cf7a5e4a85
-  secret: bdd95e990f24c3098a918f3519ecc7cc
+  appid: wx3d26ceacc420b29b
+  secret: a7d6fbf72c9dc13d085231a5d8287cd8
