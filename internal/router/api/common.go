@@ -1,4 +1,4 @@
-package admin
+package api
 
 import (
 	"Project001/internal/controller"

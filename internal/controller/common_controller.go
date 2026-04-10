@@ -9,12 +9,13 @@ import (
 type CommonController struct {
 }
 
+func NewCommonController() *CommonController {
+	return &CommonController{}
+}
+
 func (s *CommonController) TestFun(c *gin.Context) {
 	msg := "this is TestFun"
-	global.Log.Debug("Debug123")
-	global.Log.Warn("Warn123")
-	global.Log.Info("Info123")
-
+	global.Log.Debug("this is TestFun")
 	println(msg)
 	return
 }

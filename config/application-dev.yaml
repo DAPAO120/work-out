@@ -2,6 +2,7 @@ server:
   port: 8080
   # debug | release | test 运行环境
   level: debug
+  domain: http://192.168.232.128:8080
 
 datasource:
   host: 192.168.232.128
@@ -24,20 +25,8 @@ log:
 
 
 jwt:
-  admin:
-    # 设置jwt签名加密时使用的秘钥
-    secret: admin
-    # 设置jwt过期时间
-    ttl: 7200000
-    # 设置前端传递过来的令牌名称
-    name: token
-  user:
-    # 设置jwt签名加密时使用的秘钥
-    secret: user
-    # 设置jwt过期时间
-    ttl: 7200000
-    # 设置前端传递过来的令牌名称
-    name: Authorization
+  secret: 8xQ$9pL#2kF!7sR@5zG&1bN*0dH
+
 
 
 alioss:
@@ -47,5 +36,5 @@ alioss:
   bucket_name: YouOption
 
 wechat:
-  appid: YouOption
-  secret: YouOption
+  appid: wx845d22cf7a5e4a85
+  secret: bdd95e990f24c3098a918f3519ecc7cc

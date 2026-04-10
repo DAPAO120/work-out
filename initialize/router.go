@@ -18,6 +18,9 @@ func routerInit() *gin.Engine {
 	api := r.Group("/api")
 	{
 		allRouter.CommonRouter.InitApiRouter(api)
+		allRouter.WechatRouter.InitApiRouter(api)
+		allRouter.ArticleRouter.InitApiRouter(api)
+		allRouter.ProfileRouter.InitApiRouter(api)
 	}
 	return r
 }

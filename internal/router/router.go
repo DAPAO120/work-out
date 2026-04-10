@@ -1,9 +1,12 @@
 package router
 
-import "Project001/internal/router/admin"
+import "Project001/internal/router/api"
 
 type RouterGroup struct {
-	admin.CommonRouter
+	api.CommonRouter
+	api.WechatRouter
+	api.ArticleRouter
+	api.ProfileRouter
 }
 
 var AllRouter = new(RouterGroup)

@@ -50,8 +50,9 @@ type AllConfig struct {
 }
 
 type Server struct {
-	Port  string
-	Level string
+	Port   string
+	Level  string
+	Domain string
 }
 
 type DataSource struct {
@@ -88,15 +89,16 @@ type Log struct {
 }
 
 type Jwt struct {
-	Admin JwtOption
-	User  JwtOption
+	Secret string
+	// Admin JwtOption
+	// User  JwtOption
 }
 
-type JwtOption struct {
-	Secret string
-	TTL    string
-	Name   string
-}
+// type JwtOption struct {
+// 	Secret string
+// 	TTL    string
+// 	Name   string
+// }
 
 type AliOss struct {
 	EndPoint        string
