@@ -1,5 +1,5 @@
-# 使用已有的 golang:1.25.5-alpine 作为构建环境
-FROM golang:1.25.5-alpine AS builder
+# 使用已有的 golang:1.25.5-alpine
+FROM golang:1.25.5-alpine
 
 # 设置工作目录
 WORKDIR /app
@@ -15,8 +15,6 @@ RUN go mod download
 COPY . .
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o main .
 
-# 运行阶段（使用最小镜像）
-FROM alpine:latest
 
 # 设置时区
 ENV TZ=Asia/Shanghai
