@@ -1,28 +1,34 @@
-# 构建阶段
+# 使用已有的 golang:1.25.5-alpine 作为构建环境
 FROM golang:1.25.5-alpine AS builder
 
+# 设置工作目录
 WORKDIR /app
 
-# 复制 go.mod 和 go.sum（利用 Docker 缓存）
+# 设置 Go 代理（国内加速）
+ENV GOPROXY=https://goproxy.cn,direct
+
+# 复制依赖文件并下载（利用缓存）
 COPY go.mod go.sum ./
 RUN go mod download
 
-# 复制源代码并构建
+# 复制源代码并编译
 COPY . .
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o main .
 
-# 运行阶段（使用最小化镜像）
+# 运行阶段（使用最小镜像）
 FROM alpine:latest
 
-RUN apk --no-cache add ca-certificates tzdata
+# 设置时区
+ENV TZ=Asia/Shanghai
 
+# 设置工作目录
 WORKDIR /root/
 
-# 从构建阶段复制二进制文件
+# 从构建阶段复制编译好的二进制文件
 COPY --from=builder /app/main .
 
-# 暴露端口（与你的 Go 服务保持一致）
+# 暴露端口（根据你的 Go 项目实际端口修改）
 EXPOSE 8080
 
-# 启动命令
+# 启动程序
 CMD ["./main"]
