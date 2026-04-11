@@ -1,6 +1,6 @@
 server:
   port: 8080
-  domain: https://zglndlls.top
+  domain: https://zglndlls.top:8443
 
 datasource:
   host: postgres

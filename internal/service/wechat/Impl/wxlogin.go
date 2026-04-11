@@ -4,6 +4,8 @@ import (
 	"Project001/global"
 	"Project001/internal/model"
 	"context"
+	"fmt"
+	"math/rand"
 	"time"
 
 	"github.com/ArtisanCloud/PowerWeChat/v3/src/officialAccount"
@@ -74,9 +76,19 @@ func (s *WxloginServiceImpl) Login(ctx context.Context, code string) (*model.Use
 	if err != nil {
 		return nil, err
 	}
+	// 生成随机昵称
+	randomStr := generateRandomString(6) // 6位随机字符串，可根据需要调整
+	nickname := "新用户" + randomStr
 
+	fileURL := fmt.Sprintf(
+		"%s/work-out/%s",
+		global.Config.Server.Domain,
+		"defaultAvatar.jpg",
+	)
 	user := model.User{
-		OpenID: rs.OpenID,
+		OpenID:   rs.OpenID,
+		Avatar:   fileURL,
+		Nickname: nickname,
 	}
 	//在数据库中查找用户，若不存在则创建 (Upsert 逻辑)
 	result := global.DB.Where(model.User{OpenID: rs.OpenID}).FirstOrCreate(&user)
@@ -93,4 +105,13 @@ func (s *WxloginServiceImpl) Login(ctx context.Context, code string) (*model.Use
 
 	//返回用户信息（后续可在此生成 JWT）
 	return &user, nil
+}
+
+func generateRandomString(length int) string {
+	const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+	b := make([]byte, length)
+	for i := range b {
+		b[i] = charset[rand.Intn(len(charset))]
+	}
+	return string(b)
 }
