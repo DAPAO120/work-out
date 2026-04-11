@@ -8,7 +8,7 @@ import (
 	"github.com/spf13/viper"
 )
 
-var envPtr = pflag.String("env", "dev", "Environment: dev or prod")
+var envPtr = pflag.String("env", "release", "Environment: dev or prod")
 
 func InitLoadConfig() *AllConfig {
 	// 使用pflag库来读取命令行参数，用于指定环境，默认为"dev"

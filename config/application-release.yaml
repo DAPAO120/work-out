@@ -14,7 +14,7 @@ datasource:
   db_type: PostgreSql
 
 redis:
-  host: postgres
+  host: redis
   port: 6379
   password: 20000107
   data_base: 1
