@@ -1,7 +1,5 @@
 server:
   port: 8080
-  # debug | release | test 运行环境
-  level: debug
   domain: https://zglndlls.top
 
 datasource:
@@ -36,5 +34,5 @@ alioss:
   bucket_name: YouOption
 
 wechat:
-  appid: wx3d26ceacc420b29b
-  secret: a7d6fbf72c9dc13d085231a5d8287cd8
+  appid: wx31fa6f8c4ddade95
+  secret: 9b14e545f80e4638250e0b5fbe351e5e
