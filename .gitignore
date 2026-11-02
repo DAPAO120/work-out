@@ -1,0 +1,24 @@
+# ===== 编译产物 =====
+*.exe
+*.exe.*
+__debug_bin*
+*.test
+*.out
+*.dll
+*.so
+*.dylib
+
+# ===== 日志 =====
+logger/*.txt
+logger/*.log
+*.log
+
+# ===== 编辑器 / 系统 =====
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# ===== Go =====
+/vendor/
