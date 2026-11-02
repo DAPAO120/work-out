@@ -9,7 +9,7 @@ import (
 )
 
 var (
-	Config *config.AllConfig // 全局Config
+	Config *config.AllConfig
 	Log    logger.ILogger
 	DB     *gorm.DB
 	Redis  *redis.Client
