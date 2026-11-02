@@ -83,3 +83,52 @@ CREATE TABLE user_follow (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     UNIQUE(user_id, follow_user_id)
 );
+
+
+-- ============================================================
+-- 大厅 / 房间计分模块（房间、成员、计分记录）
+-- ============================================================
+
+-- 房间表
+CREATE TABLE room (
+    id BIGSERIAL PRIMARY KEY,
+    room_no VARCHAR(8) NOT NULL UNIQUE,          -- 6 位房间号
+    owner_id BIGINT NOT NULL,                    -- 房主 users.id
+    title VARCHAR(100) DEFAULT '',
+    status SMALLINT DEFAULT 1,                   -- 1 进行中 0 已解散
+    round INT DEFAULT 1,                         -- 当前轮次
+    created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+    closed_at TIMESTAMPTZ
+);
+CREATE INDEX idx_room_owner ON room(owner_id);
+CREATE INDEX idx_room_status ON room(status);
+
+-- 房间成员表
+CREATE TABLE room_member (
+    id BIGSERIAL PRIMARY KEY,
+    room_id BIGINT NOT NULL,
+    user_id BIGINT NOT NULL,
+    nickname VARCHAR(100) DEFAULT '',
+    avatar TEXT,
+    total_score INT DEFAULT 0,
+    is_owner BOOLEAN DEFAULT FALSE,
+    joined_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+    kicked_at TIMESTAMPTZ,
+    UNIQUE(room_id, user_id)
+);
+CREATE INDEX idx_room_member_room ON room_member(room_id);
+CREATE INDEX idx_room_member_user ON room_member(user_id);
+
+-- 计分记录表
+CREATE TABLE room_score (
+    id BIGSERIAL PRIMARY KEY,
+    room_id BIGINT NOT NULL,
+    user_id BIGINT NOT NULL,
+    round INT NOT NULL,                          -- 第几轮
+    delta INT NOT NULL,                          -- 本次加减分
+    score_after INT NOT NULL,                    -- 加完之后的总分
+    created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
+);
+CREATE INDEX idx_room_score_room ON room_score(room_id);
+CREATE INDEX idx_room_score_room_user ON room_score(room_id, user_id);

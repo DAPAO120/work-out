@@ -7,6 +7,7 @@ type RouterGroup struct {
 	api.WechatRouter
 	api.ArticleRouter
 	api.ProfileRouter
+	api.RoomRouter
 }
 
 var AllRouter = new(RouterGroup)

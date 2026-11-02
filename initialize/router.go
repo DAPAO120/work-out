@@ -21,6 +21,7 @@ func routerInit() *gin.Engine {
 		allRouter.WechatRouter.InitApiRouter(api)
 		allRouter.ArticleRouter.InitApiRouter(api)
 		allRouter.ProfileRouter.InitApiRouter(api)
+		allRouter.RoomRouter.InitApiRouter(api)
 	}
 	return r
 }
